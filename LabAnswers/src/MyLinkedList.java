@@ -10,19 +10,19 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 
 	public boolean remove(int index) {
-		if (index>size || index<0){return false;}
+		if (index > size || index < 0) {
+			return false;
+		}
 		Node<T> nodeBefore = head;
 		Node<T> nodeAfter;
-		for(int i=0; i<index-1; i++){
+		for (int i = 0; i < index - 1; i++) {
 			nodeBefore = nodeBefore.getNext();
 		}
 		nodeAfter = nodeBefore.getNext().getNext();
-		if (nodeBefore.getNext()!=null){
-			nodeBefore.setNext(nodeAfter);
-			return true;
-		} else {
-			return false;
-		}
+		nodeBefore.setNext(nodeAfter);
+		size--;
+		return true;
+
 	}
 
 	public T get(int index) {
@@ -35,11 +35,19 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 
 	public void add(T obj) {
+		if(size == 0){
+			head = new Node<>(obj);
+			size++;
+			return;
+		}
 		Node<T> last = head;
-		while (last.getNext()!=null){
+		Node<T> afterLast = last.getNext();
+		while (afterLast!=null){
 			last = last.getNext();
+			afterLast = last.getNext();
 		}
 		last.setNext(new Node<>(obj));
+		size++;
 	}
 
 	//The methods below are bonus
@@ -50,6 +58,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 			Node<T> newHead = new Node<>(obj);
 			newHead.setNext(head);
 			head = newHead;
+			size ++;
 		} else if (index>=size){
 			//If given an index of the list's size or greater, add the new node to the end of the list.
 			add(obj);
@@ -64,6 +73,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 			Node<T> newNode = new Node<>(obj);
 			nodeBefore.setNext(newNode);
 			newNode.setNext(nodeAfter);
+			size++;
 		}
 	}
 
