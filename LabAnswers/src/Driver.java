@@ -1,8 +1,4 @@
-package ListLab;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Driver {
 	
@@ -26,10 +22,19 @@ public class Driver {
 		//operation. Complete the action
 		
 		//Delete the first, if any, Student with the last name of "Smith"
-		
+		Iterator<Student> iterator = studentLinkedList.iterator();
+		while(iterator.hasNext()){
+			if (iterator.next().getLastName().equals("Smith")){
+				iterator.remove();
+			}
+		}
 		//Change the name of the 3rd entry to "Joe Montana"
-		
+		Student thirdStudent = studentArrayList.get(2);
+		thirdStudent.setFirstName("Joe");
+		thirdStudent.setLastName("Montana");
+
 		//Remove the 10th element
+		studentLinkedList.remove(9);
 	}
 	
 	//To generate the ArrayList

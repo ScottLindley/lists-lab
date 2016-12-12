@@ -1,5 +1,3 @@
-package ListLab;
-
 import java.text.DecimalFormat;
 
 public class Student implements Comparable<Student> {
